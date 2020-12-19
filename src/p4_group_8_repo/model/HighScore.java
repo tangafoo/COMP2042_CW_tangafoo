@@ -10,29 +10,32 @@ public class HighScore extends Actor {
 	static List<Integer> highScoreList;
 	Image highScoreTitleImage;
 	public static Boolean highScore = false;
-	public static final String highScoreResourcePath = "file:src/main/resources/highscores/";
-	public static final String highScoreFileResourcePath = "src/main/resources/highscores/";
+	public static final String highScoreResourcePath = "file:../src/main/resources/highscores/";
+	public static final String highScoreFileResourcePath = "src/p4_group_8_repo/resources/highscores/";
 
 	public void act(long now) {
 		
 	}
 	
 	public HighScore(String image) {
-		highScoreTitleImage = new Image(highScoreResourcePath + image + ".png");
-		setImage(highScoreTitleImage);
 		setX(500);
 		setY(20);	
 	}
 
-	public static List <Integer> HighScoreController(String levelNumber, int x) throws IOException {
+	public static List <Integer> HighScoreList(int x) throws IOException {
 
-		highScoreList = new ArrayList<>();
-		File highscorefile = new File(highScoreFileResourcePath + "HighScoreFor" +  levelNumber + ".txt");
-
+		if (highScoreList == null) {
+			highScoreList = new ArrayList<>(); 
+		}
+				
+		File highscorefile = new File(highScoreFileResourcePath + "HighScores.txt");
+				
 			try {
+				
 				if (!highscorefile.exists()) {
 					highscorefile.createNewFile();
 				}
+				
 				highScoreList.add(x);
 
 				Scanner reader = new Scanner(highscorefile);
@@ -49,7 +52,7 @@ public class HighScore extends Actor {
 				writer.close();
 
 			} catch(IOException e){
-				System.out.println("Error in High Score Controller");
+				System.out.println(e);
 			}
 
 		return highScoreList;
@@ -69,10 +72,14 @@ public class HighScore extends Actor {
 			}
 
 	public static Boolean checkCurrentScoreHigher(int score) {
-		for (int i = 0; i < highScoreList.size(); i++) {
-			if (score >= highScoreList.get(i) ) {
-				return true;
-			}
+		
+		if (highScoreList == null) {
+			highScoreList = new ArrayList<>(); 
+			highScoreList.add(score);
+		}
+		
+		if (score > highScoreList.get(highScoreList.size() - 1) ) {
+			return true;
 		}
 		return false;
 	}

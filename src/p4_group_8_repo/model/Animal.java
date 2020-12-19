@@ -1,5 +1,6 @@
 package p4_group_8_repo.model;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.event.EventHandler;
@@ -8,8 +9,11 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 public class Animal extends Actor {
+	
 	Image imgW1;
 	Image imgA1;
 	Image imgS1;
@@ -18,20 +22,31 @@ public class Animal extends Actor {
 	Image imgA2;
 	Image imgS2;
 	Image imgD2;
+	
+	int imgSize = 40;
+	
 	int points = 0;
 	int end = 0;
+	
 	private boolean second = false;
 	boolean noMove = false;
+	
 	double movement = 13.3333333*2;
 	double movementX = 10.666666*2;
-	int imgSize = 40;
+	
 	boolean carDeath = false;
 	boolean waterDeath = false;
+	
 	boolean stop = false;
 	boolean changeScore = false;
+	
 	int carD = 0;
+	
 	double w = 800;
+	
 	ArrayList<End> inter = new ArrayList<End>();
+	ArrayList<Digit> digits = new ArrayList<>();
+	
 	public Animal(String imageLink) {
 		setImage(new Image(imageLink, imgSize, imgSize, true, true));
 		setX(300);
@@ -163,9 +178,10 @@ public class Animal extends Actor {
 				setImage(new Image("file:src/p4_group_8_repo/resources/froggerUp.png", imgSize, imgSize, true, true));
 				noMove = false;
 				if (points>50) {
-					points-=50;
 					changeScore = true;
 				}
+				
+				showHighScore(getPoints());
 			}
 			
 		}
@@ -194,9 +210,10 @@ public class Animal extends Actor {
 				setImage(new Image("file:src/p4_group_8_repo/resources/froggerUp.png", imgSize, imgSize, true, true));
 				noMove = false;
 				if (points>50) {
-					points-=50;
 					changeScore = true;
 				}
+				
+				showHighScore(getPoints());
 			}
 			
 		}
@@ -246,6 +263,33 @@ public class Animal extends Actor {
 			//setY(679.8+movement);
 		}
 	}
+	
+	public void showHighScore(int score) {
+		
+		Alert alert = new Alert(Alert.AlertType.NONE);
+		alert.setTitle("FROGGER High Scores");
+		
+		alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
+		
+		if(HighScore.checkCurrentScoreHigher(score)){
+		
+			alert.setHeaderText("You have set a new HIGH SCORE: "+ score+"!");
+			
+			try {
+				HighScore.HighScoreList(score);
+			} catch(IOException e){
+				System.out.println(e);
+			}
+			
+		}else {
+			alert.setHeaderText("Your Score: " + score + "!");
+		}
+		
+		alert.setContentText("Current Highscore List : " + HighScore.displayHighScore());
+		alert.show();
+		
+	}
+	
 	public boolean getStop() {
 		return end==5;
 	}

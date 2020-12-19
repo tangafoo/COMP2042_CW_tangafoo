@@ -46,7 +46,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Text fill="#434343" strokeType="OUTSIDE" strokeWidth="0.0" text="Follow these keys to navigate our Leapin' Frogger! &#10;&#10;W to move forward, A to move leftward, S to move backward, and D to move rightward. &#10;&#10;Avoid the obstacles and make your way to safety!" wrappingWidth="250.0" />
+                  <Text fill="#434343" strokeType="OUTSIDE" strokeWidth="0.0" text="Follow these keys to navigate our Leapin' Frogger! &#10;&#10;W to move forward&#10;A to move leftward&#10;S to move backward&#10;D to move rightward. &#10;&#10;Avoid the obstacles and make your way to safety!" wrappingWidth="250.0" />
                </children>
                <padding>
                   <Insets bottom="20.0" top="20.0" />
