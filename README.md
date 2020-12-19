@@ -2,7 +2,7 @@ A README.md file (max. 500 words), documenting the work you conducted (highlight
 key changes you made for maintenance and extension, where you made them, and why you
 made them)
 
-# Frogger - Software Maintanence (20209307 Chevalier Tan Ga Foo)
+# Frogger Java - UoN Software Maintanence (Chevalier Tan Ga Foo - 20209307)
 
 ## Maintenance
 

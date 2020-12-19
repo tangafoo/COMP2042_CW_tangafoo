@@ -46,6 +46,9 @@ public class Main extends Application {
 		launch(args);
 	}
 
+	/**
+	 * Start the application. Create and connect necessary views and scenes.
+	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
@@ -59,6 +62,11 @@ public class Main extends Application {
 		linkScenes();
 	}
 	
+	/**
+	 * Load and reference the menu view from MenuView.fxml
+	 * @throws IOException
+	 * Loading the Menu fxml file may give rise to errors (If so, check the file path)
+	 */
 	public void showMenuView() throws IOException {
 		
 		FXMLLoader loader = new FXMLLoader();
@@ -73,6 +81,11 @@ public class Main extends Application {
 		primaryStage.show();
 	}
 	
+	/**
+	 * Load and reference info view from infoView.fxml
+	 * @throws IOException
+	 * Loading the Info fxml file may give rise to errors (If so, check the file path)
+	 */
 	public void createInfoView() throws IOException {
 		
 		FXMLLoader loader = new FXMLLoader();
@@ -92,7 +105,10 @@ public class Main extends Application {
 		infoController.menuScene = this.menuScene;
 	}
 	
-	public void createGameView() throws IOException {
+	/**
+	 * Create the game view and link it to the gameScene variable
+	 */
+	public void createGameView() {
 		
 		background = new MyStage();
 	    gameScene  = new Scene(background,600,800);

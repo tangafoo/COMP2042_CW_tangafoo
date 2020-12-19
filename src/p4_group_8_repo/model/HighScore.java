@@ -22,7 +22,13 @@ public class HighScore extends Actor {
 		setY(20);	
 	}
 
-	public static List <Integer> HighScoreList(int x) throws IOException {
+	/**
+	 * Add a high score to the HighScore.txt file
+	 * @param x
+	 * @return
+	 * @throws IOException
+	 */
+	public static List <Integer> HighScoreList(int score) throws IOException {
 
 		if (highScoreList == null) {
 			highScoreList = new ArrayList<>(); 
@@ -35,17 +41,22 @@ public class HighScore extends Actor {
 				if (!highscorefile.exists()) {
 					highscorefile.createNewFile();
 				}
-				
-				highScoreList.add(x);
 
+				highScoreList.add(score);
+				
 				Scanner reader = new Scanner(highscorefile);
 				while (reader.hasNextLine()) {
 					String data = reader.nextLine();
+					
 					highScoreList.add(Integer.parseInt(data));
 				}
+				
 				highScoreList.sort(Collections.reverseOrder());
+				
 				highScoreList = highScoreList.stream().limit(5).collect(Collectors.toList());
+				
 				PrintWriter writer = new PrintWriter(highscorefile);
+				
 				highScoreList.forEach(highscore ->{
 					writer.println(highscore.toString());
 				});
@@ -59,6 +70,10 @@ public class HighScore extends Actor {
 	}
 
 
+	/**
+	 * Format the string in HighScore.txt file to be readable and prepare for it to be displayed
+	 * @return
+	 */
 	public static String displayHighScore() {
 		StringBuilder stringBuilder = new StringBuilder();
 		
@@ -70,17 +85,25 @@ public class HighScore extends Actor {
 				}
 				return stringBuilder.toString();
 			}
-
+	
+	
+	/**
+	 * Check if current score is the high score or not
+	 * @param score
+	 * @return
+	 */
 	public static Boolean checkCurrentScoreHigher(int score) {
 		
 		if (highScoreList == null) {
 			highScoreList = new ArrayList<>(); 
-			highScoreList.add(score);
 		}
 		
-		if (score > highScoreList.get(highScoreList.size() - 1) ) {
-			return true;
+		for (int i = 0; i < highScoreList.size(); i++) {
+			if (score >= highScoreList.get(i) ) {
+				return true;
+			}
 		}
+		
 		return false;
 	}
 

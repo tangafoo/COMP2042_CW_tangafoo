@@ -264,6 +264,10 @@ public class Animal extends Actor {
 		}
 	}
 	
+	/**
+	 * Call when player has hit an obstacle (frogger death) to show the high score pop up
+	 * @param score
+	 */
 	public void showHighScore(int score) {
 		
 		Alert alert = new Alert(Alert.AlertType.NONE);
@@ -273,7 +277,7 @@ public class Animal extends Actor {
 		
 		if(HighScore.checkCurrentScoreHigher(score)){
 		
-			alert.setHeaderText("You have set a new HIGH SCORE: "+ score+"!");
+			alert.setHeaderText("You have set a new HIGH SCORE: "+ score+ " !");
 			
 			try {
 				HighScore.HighScoreList(score);
