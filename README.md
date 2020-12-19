@@ -1,26 +1,42 @@
-A README.md file (max. 500 words), documenting the work you conducted (highlighting the
-key changes you made for maintenance and extension, where you made them, and why you
-made them)
+# Frogger Java (Chevalier Tan Ga Foo - 20209307)
 
-# Frogger Java - UoN Software Maintanence (Chevalier Tan Ga Foo - 20209307)
+Completed as coursework for COMP2042 Software Maintenance - University of Nottingham. 
+
+Briefly, the key changes for maintenance include folder restructuring to adhere closely to MVC, generating and populating Javadocs, refactoring spaces and tabs for better readability, building the project with Maven, and using Github for version control in the project. 
+
+The key extensions made include a main menu screen, a high score alert, an info screen, version number display, and accumulative points. 
 
 ## Maintenance
 
+###### Versions
+
+Version number is available in the menu screen showing the current version. Future versions may include higher quality images, soundtracks, new controls etc. Players can look up versions to see its history and developers can maintain different versions seperately for better maintanability. 
+
+This change was made in the fxml file (MenuView.fxml)
+
 ###### Model, View, and Controller (MVC)
 
-Folders were created and made in the overall directory. This is to for better organization and seperating of concerns in terms of functionality and code purpose.
+The project is seperated into the folders (Controller, Model, Resources, View) to adhere closely with the MVC pattern. The seperation of concerns and placing files into respective folders lead to better organization and code readability/purpose.
+
+This change was made in the overall project.
 
 ## Extensions
 
 ###### Main Menu Screen
 
-The main menu screen was made in an .fxml file with Scene Builder and imported by an FXMLLoader in the MenuController.java file. This screen was made as a starting page for more functionality before the game.
+The main menu screen was made in an .fxml file with Scene Builder and imported by an FXMLLoader in the Main.java file. It has a controller MenuController to register and respond to events. This screen was made as a starting page for more functionality before the game.
 
-###### Death Alert
+This change was made in the fxml file (MenuView.fxml) and controller (MenuController.java)
 
-The death alert was made in an .fxml file with Scene Builder and imported by an FXMLLoader in the DeathAlertController.java file. This screen was made to certify endgame properties page for more functionality before the game.
+###### Info Screen
+
+The info screen was made in an .fxml file with Scene Builder and imported by an FXMLLoader in the Main.java file. It has a controller InfoController to register and respond to events. This screen was made to explain the game story and provide clear instructions on how to play the game. 
+
+This change was made in the fxml file (InfoView.fxml) and controller (InfoController.java)
 
 ###### High Score
 
-The high score text file was made and stored in the "src" directory and written to whenever a new high score surpassed or 
+The high score alert is made and presented in code. Specifically, it uses the functionality of its own class (HighScore.java) and is called in the class (Animal.java) whenever a death occurs in the game. The current score and a list, limited to 5 scores, of previous high scores will be shown as well. 
+
+This change was made in the class (HighScore.java)
 
